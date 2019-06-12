@@ -1,0 +1,116 @@
+nao_dcm:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 1000 
+  
+  # Position Controllers ---------------------------------------
+  HeadYaw_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: HeadYaw
+    pid: {p: 1000.0, i: 100.0, d: 1.0}
+  HeadPitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: HeadPitch
+    pid: {p: 1000.0, i: 100.0, d: 1.0}
+
+  LShoulderPitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LShoulderPitch
+    pid: {p: 80.0, i: 4.0, d: 2.0}
+  LShoulderRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LShoulderRoll
+    pid: {p: 50.0, i: 5.0, d: 0.7}
+  LElbowYaw_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LElbowYaw
+    pid: {p: 110.0, i: 0.0, d: 0.0}
+  LElbowRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LElbowRoll
+    pid: {p: 30.0, i: 0.7, d: 0.3}
+
+  LHipYawPitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LHipYawPitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  LHipRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LHipRoll
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  LHipPitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LHipPitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  LKneePitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LKneePitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  LAnklePitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LAnklePitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  LAnkleRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LAnkleRoll
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+    
+  RHipYawPitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RHipYawPitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  RHipRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RHipRoll
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  RHipPitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RHipPitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  RKneePitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RKneePitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  RAnklePitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RAnklePitch
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+  RAnkleRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RAnkleRoll
+    pid: {p: 500.0, i: 0.0, d: 0.1}
+
+  RShoulderPitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RShoulderPitch
+    pid: {p: 80.0, i: 4.0, d: 2.0}
+  RShoulderRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RShoulderRoll
+    pid: {p: 50.0, i: 5.0, d: 0.7}
+  RElbowYaw_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RElbowYaw
+    pid: {p: 110.0, i: 0.0, d: 0.0}
+  RElbowRoll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RElbowRoll
+    pid: {p: 30.0, i: 0.7, d: 0.3}
+
+  LWristYaw_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LWristYaw
+    pid: {p: 1.0, i: 0.13, d: 0.01}
+  LHand_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LHand
+    pid: {p: 100.0, i: 100.0, d: 3.0}
+  RWristYaw_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RWristYaw
+    pid: {p: 1.0, i: 0.13, d: 0.01}
+  RHand_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RHand
+    pid: {p: 100.0, i: 100.0, d: 3.0}

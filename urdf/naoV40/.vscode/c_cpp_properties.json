@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/seyed/ros_ws/ws/devel/include",
+                "/home/seyed/ros_ws/Thomas_Buschmann_thesis/realtime_trajectory_generator_ros/devel/include",
+                "/home/seyed/ros_ws/vigir/devel/include",
+                "/opt/ros/kinetic/include",
+                "/home/seyed/ros_ws/ws/src/aiut_nao/include",
+                "/home/seyed/ros_ws/ws/src/one_link_foot/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

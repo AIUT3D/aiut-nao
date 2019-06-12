@@ -1,0 +1,84 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='soccer_ball'>
+    <link name='soccer_ball_link'>
+      <pose>0 0 0 0 0 0</pose>
+      <!-- inertia based on solid sphere 2/5 mr^2 -->
+      <inertial>
+        <mass>0.026</mass>
+        <inertia>
+          <ixx>1.664e-05</ixx>
+          <iyy>1.664e-05</iyy>
+          <izz>1.664e-05</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <!-- approximate rolling friction -->
+      <velocity_decay>
+        <linear>0.0001</linear>
+        <angular>0.005</angular>
+      </velocity_decay>
+      <visual name='visual'>
+        <geometry>
+          <mesh>
+            <scale>0.042 0.042 0.042</scale>
+            <uri>model://robocup_3Dsim_ball/meshes/ball.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name='collision'>        
+        <geometry>
+          <sphere>
+            <radius>0.042</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+              <fdir1>1 0 0</fdir1>
+              <slip1>0.6</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0.01</surface_radius>
+              <use_patch_radius>0</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0.8</restitution_coefficient>
+            <threshold>0.01</threshold>
+          </bounce>
+          <contact>
+	    <ode>
+              <soft_cfm>0.05</soft_cfm>
+              <soft_erp>0.5</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>100</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0.05</soft_cfm>
+              <soft_erp>0.5</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+    <static>0</static>
+    <pose frame=''>0 0 0.042 0 0 0</pose>    
+  </model>
+</sdf>

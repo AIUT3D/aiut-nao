@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/seyed/ros_ws/ws/devel/lib/python2.7/dist-packages",
+        "/home/seyed/ros_ws/Thomas_Buschmann_thesis/realtime_trajectory_generator_ros/devel/lib/python2.7/dist-packages",
+        "/home/seyed/ros_ws/vigir/devel/lib/python2.7/dist-packages",
+        "/opt/ros/kinetic/lib/python2.7/dist-packages"
+    ]
+}

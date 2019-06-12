@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<launch>
+	<!-- send urdf to param server -->
+	<arg name="version" default="V40" />
+	<arg name="model" default="$(find aiut_nao)/urdf/nao$(arg version)/nao_robot.xacro" />
+		
+	<param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+	
+	<!-- gui for slider & ... -->
+	<arg name="gui" default="true" /> 
+	<param name="use_gui" value="$(arg gui)"/>
+
+	<!-- init world -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find aiut_nao)/world/nao.world"/>
+		<!--<arg name="world_name" value="$(find aiut_nao)/world/my.world"/>-->
+		<arg name="paused" value="true"/>
+        	<arg name="gui" default="true" />
+		<arg name="use_sim_time" value="true"/>
+		<arg name="verbose" value="false"/>
+		<arg name="recording" value="false"/>
+		<arg name="debug" value="false"/>
+	</include>
+	
+	 <!-- Spawn a robot into Gazebo -->	
+	<node name="spawn_nao" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -x -0.17 -y -0.05 -z 0.34 -model nao_dcm" respawn="false" output="screen"/>
+
+	<!-- Use PIDs?? -->
+	<arg name="use_pid" value="true"/>
+	<group if="$(arg use_pid)">
+
+	<!-- Load joint controller configurations from YAML file to parameter server -->
+	<rosparam file="$(find aiut_nao)/config/gazebo_control_spawner_$(arg version).yaml" command="load"/>
+
+	<!-- load the controllers -->
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+		output="screen" ns="/nao_dcm" args="	  joint_state_controller 
+							  HeadYaw_position_controller
+							  HeadPitch_position_controller
+							  LShoulderPitch_position_controller
+							  LElbowYaw_position_controller
+							  LElbowRoll_position_controller
+							  LShoulderRoll_position_controller
+							  LWristYaw_position_controller
+							  LHand_position_controller
+							  RShoulderPitch_position_controller
+							  RElbowYaw_position_controller
+							  RElbowRoll_position_controller
+							  RShoulderRoll_position_controller
+							  RWristYaw_position_controller
+							  RHand_position_controller
+							  LHipYawPitch_position_controller
+							  LHipRoll_position_controller
+							  LHipPitch_position_controller
+							  LKneePitch_position_controller
+							  LAnklePitch_position_controller
+							  LAnkleRoll_position_controller
+							  RHipYawPitch_position_controller
+							  RHipRoll_position_controller
+							  RHipPitch_position_controller
+							  RKneePitch_position_controller
+							  RAnklePitch_position_controller	
+							  RAnkleRoll_position_controller"/>
+	</group>
+	<!-- start robot state publisher -->
+	<!-- convert joint states to TF transforms for rviz, etc -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+		respawn="false" output="screen">
+		<remap from="/joint_states" to="/nao_dcm/joint_states" />
+	</node>   
+
+	<!--rqt launch -->
+	<!--node name = "rqt_gui" pkg = "rqt_gui" type = "rqt_gui" respawn = "false" output = "screen" args = "- -perspective-file '$(find aiut_nao)/config/controll-joint.perspective'"/>-->
+ 
+	
+	<!-- start joint state publisher -->
+	<!--<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen"/>-->
+
+	<!-- open Rviz-->	
+	<!--<arg name="config_file" value="$(find aiut_nao)/config/urdf.rviz"/>
+	<node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false" output="screen" args="-d $(arg config_file)" />-->
+	<!--<node name="rviz" pkg="rviz" type="rviz" required="true"/>-->
+</launch>
